@@ -42,6 +42,7 @@ void creat(Mgraph *g){
 void dijkstra(Mgraph g,int V0,path p,dist d){
 	bool final[M];
 	int k;
+	int v;
 	for(int i = 0;i < g.n;i++){
 		final[i] = false;
 		d[i] = g.edges[i][V0];
@@ -58,21 +59,22 @@ void dijkstra(Mgraph g,int V0,path p,dist d){
 		for(k = 0;k < g.n;k++){
 			if(d[k] < min&&!final[k]){
 				min = d[k];
+				v=k;
 			}
 		}
 		if(min == FINITY)
 		break;
-		final[k] = true;
+		final[v] = true;
+//		cout<<d[v]<<endl;
 		for(int j = 0;j < g.n;j++){
-			if(!final[j]&&(min+g.edges[k][j] < d[j])){
-				d[j] = min+g.edges[k][j];
-				p[j] = k;
+			if(!final[j]&&(min+g.edges[v][j] < d[j])){
+				p[j] = v;
+				d[j] = min+g.edges[v][j];
 			}
+			
 		}
 	}
-		for(int i = 0;i < g.n;i++){
-			cout<<d[i];
-		}
+		
 }
 
 void print(Mgraph g,path p,dist d){
@@ -86,7 +88,7 @@ void print(Mgraph g,path p,dist d){
 			pre=p[pre];
 		}
 		while(top>=0){
-			printf("  %d",stk[top--]);
+			printf("%2d",stk[top--]);
 		}
 	}
 }
