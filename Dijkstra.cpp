@@ -44,6 +44,22 @@ void creat(Mgraph *g){//³õÊ¼»¯
 			g->edges[li][ri]=(int)sqrt((g->x[ri]-g->x[li])*(g->x[ri]-g->x[li])+(g->y[ri]-g->y[li])*(g->y[ri]-g->y[li]));
 			cout<<g->edges[ri][li]<<endl;
 		}
+		g->edges[8][37]=100;
+		g->edges[37][8]=100;
+		g->edges[9][38]=100;
+		g->edges[38][9]=100;
+		g->edges[10][39]=100;
+		g->edges[39][10]=100;
+		g->edges[11][40]=100;
+		g->edges[40][11]=100;
+		g->edges[12][41]=100;
+		g->edges[41][12]=100;
+		g->edges[13][42]=100;
+		g->edges[42][13]=100;
+		g->edges[23][43]=100;
+		g->edges[43][23]=100;
+		g->edges[24][44]=100;
+		g->edges[44][24]=100;
 		fclose(rf);
 	}
 	else
