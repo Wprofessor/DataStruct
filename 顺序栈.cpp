@@ -15,7 +15,7 @@ int empty(sequence_stack sta) {
 }
 datatype read(sequence_stack sta) {
 	if(empty(sta)) {
-		cout<<"¿ÕÕ»"<<endl;
+		cout<<"Õ»ÊÇ¿ÕµÄ"<<endl;
 		exit(1) ;
 	} else {
 		return sta.a[sta.top-1];
@@ -24,7 +24,7 @@ datatype read(sequence_stack sta) {
 void push(sequence_stack *sta,datatype x) {
 	if(sta->top==MAXSIZE) {
 		cout<<"Õ»Âú"<<endl;
-		exit(1);
+		return ;
 	} else {
 		sta->a[sta->top]=x;
 		sta->top++;
@@ -41,14 +41,15 @@ int main() {
 	sequence_stack sta;
 	init(&sta);
 	push(&sta,0);
-	cout<<read(sta);
+	pop(&sta);
+	cout<<"emmm"<<endl; 
 	push(&sta,1);
-	cout<<read(sta);
+	cout<<read(sta)<<endl;
 	push(&sta,2);
-	cout<<read(sta);
+	cout<<read(sta)<<endl;
 	push(&sta,3);
-	cout<<read(sta);
+	cout<<read(sta)<<endl;
 	push(&sta,4);
-	cout<<read(sta);
+	cout<<read(sta)<<endl;
 	return 0;
 }
