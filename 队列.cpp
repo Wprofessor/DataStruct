@@ -50,6 +50,14 @@ void del(sequence_queue *q) {
 int main() {
 	sequence_queue q;
 	init(&q);
+	insert(&q,0);
+	insert(&q,1);
+	insert(&q,2);
+	insert(&q,3);
+	insert(&q,4);
+	display(q);
+	del(&q);
+	cout<<endl;
 	display(q);
 	return 0;
 }
