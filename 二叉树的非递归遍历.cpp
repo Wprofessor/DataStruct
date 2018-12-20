@@ -1,9 +1,6 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<iostream>
-#include<string.h>
-#define MAXSIZE 100
+#include<bits/stdc++.h>
 using namespace std;
+#define MAXSIZE 100
 typedef char datatype;
 typedef struct node {
 	datatype info;
@@ -12,7 +9,7 @@ typedef struct node {
 treenode creatTree() {
 	char ch;
 	treenode t;
-	ch = getchar();
+	cin>>ch;
 	if(ch == '#')                            //空子树用#号代替
 		t = NULL;
 	else {
@@ -23,14 +20,14 @@ treenode creatTree() {
 	}
 	return t;                               //返回根节点
 }
-void perorder1(treenode t) {				//前序遍历的非递归实现
-	treenode data[MAXSIZE];
+//前序非递归遍历
+void perorder(treenode t) {
+	treenode data[MAXSIZE]; //创建栈结构
 	int top = 0;
 	while(t || top != 0) {
 		if(t) {
 			cout<<t->info;
-			data[top] = t;
-			top++;
+			data[top++] = t;
 			t = t->lchild;
 		} else {
 			top--;
@@ -40,14 +37,14 @@ void perorder1(treenode t) {				//前序遍历的非递归实现
 	}
 	cout<<endl;
 }
-void inorder1(treenode t) {					//中序遍历的非递归实现
+//中序非递归遍历
+void inorder(treenode t) {
 	treenode data[MAXSIZE];
 	int top = 0;
 	while(t || top != 0) {
 		if(t) {
-			data[top] = t;
-			top++;
-			t = t->lchild;
+			data[top++] = t;
+			t = t->lchild; 
 		} else {
 			top--;
 			t = data[top];
@@ -57,38 +54,37 @@ void inorder1(treenode t) {					//中序遍历的非递归实现
 	}
 	cout<<endl;
 }
-void postorder1(treenode t) {				//后序遍历的非递归实现
+//后序非递归遍历
+void postorder(treenode t) {
 	treenode data[MAXSIZE];
-	int sign[MAXSIZE];                      //标记数组
-//	memset(sign,-1,sizeof(sign));			//将标记数组初始化为-1
 	int top = 0;
+	int tag[MAXSIZE]; 	//标记数组
+	memset(tag,0,sizeof(tag));
 	while(t || top != 0) {
 		if(t) {
-			data[top] = t;
-			sign[top] = 0;
-			top++;
+			data[top++] = t;
 			t = t->lchild;
-		} else if(sign[top-1] == 1) {
-			top--;
-			t = data[top];
-			cout<<t->info;
-			t = NULL;                       //访问后要置空，防止死循环 
-		} else if(sign[top-1] == 0) {
-			t = data[top-1];
-			sign[top-1] = 1;
-			t = t->rchild;
 		} else {
-			t == NULL;
+			if(tag[top-1] == 1) {
+				top--;
+				t = data[top];
+				cout<<t->info;
+				tag[top] = 0;
+				t = NULL;
+			} else {
+				tag[top-1] = 1;
+				t = data[top-1];
+				t = t->rchild;
+			}
 		}
 	}
-	cout<<endl;
+	cout<<endl; 
 }
 int main() {
 	treenode t;
 	t = creatTree();
-	perorder1(t);
-	inorder1(t);
-	postorder1(t);
+	perorder(t);
+	inorder(t);
+	postorder(t);
 	return 0;
 }
-
